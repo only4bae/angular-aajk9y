@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-detail',
@@ -36,9 +36,15 @@ export class HeroDetailComponent implements OnInit {
 
   goBack2() {
     if (window.history.length > 1) {
-      this.location.back()
+      this.location.back();
     } else {
-      this.router.navigate([''])
+      this.router.navigate(['']);
+    }
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
     }
   }
 }
